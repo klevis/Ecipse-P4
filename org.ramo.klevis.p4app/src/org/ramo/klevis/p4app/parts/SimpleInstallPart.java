@@ -71,8 +71,10 @@ public class SimpleInstallPart {
 				loadRepository = installService.loadRepository(text2,
 						agent);
 
+				tree.removeAll();
 				for (IInstallableUnit install : loadRepository) {
 
+					
 					TreeItem treeItem = new TreeItem(tree, 0);
 					treeItem.setText(install.getId());
 

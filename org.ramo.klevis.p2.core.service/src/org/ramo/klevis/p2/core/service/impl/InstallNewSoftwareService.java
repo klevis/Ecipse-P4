@@ -35,6 +35,17 @@ public class InstallNewSoftwareService implements IInstallNewSoftwareService {
 	IProvisioningAgent agent;
 	IMetadataRepository loadRepository = null;
 
+	public static boolean containsString(String original, String tobeChecked,
+			boolean caseSensitive) {
+		if (caseSensitive) {
+			return original.contains(tobeChecked);
+
+		} else {
+			return original.toLowerCase().contains(tobeChecked.toLowerCase());
+		}
+
+	}
+
 	@Override
 	public synchronized List<IInstallableUnit> loadRepository(String uriString,
 			IProvisioningAgent agent) {
@@ -42,13 +53,12 @@ public class InstallNewSoftwareService implements IInstallNewSoftwareService {
 		uri = null;
 		nullProgressMonitor = new NullProgressMonitor();
 		this.agent = agent;
-		if (!uriString.contains("Http")
+
+		if (!containsString(uriString, "http", false)
+				
 				&& !(uriString.contains(".jar") || uriString.contains(".zip"))) {
 
-			uri=new File(uriString).toURI();
-		} else if (!uriString.contains("Http")
-				&& (uriString.contains(".jar") || uriString.contains(".zip"))) {
-			uri=new File(uriString).toURI();
+			uri = new File(uriString).toURI();
 		}
 
 		if (uri == null)
