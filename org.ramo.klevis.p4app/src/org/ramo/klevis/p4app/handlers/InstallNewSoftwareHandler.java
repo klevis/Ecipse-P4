@@ -18,7 +18,7 @@ public class InstallNewSoftwareHandler {
 
 		System.err.println("Ok");
 		
-		Shell shell2 = new Shell(shell,SWT.NONE);
+		Shell shell2 = new Shell(shell,SWT.DIALOG_TRIM);
 		
 		new SimpleInstallPart(installNewSoftwareService, agem,workbench).createControls(shell2);
 		
