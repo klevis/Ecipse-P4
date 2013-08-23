@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager;
 import org.eclipse.equinox.p2.core.IProvisioningAgent;
 import org.eclipse.equinox.p2.core.ProvisionException;
+import org.eclipse.equinox.p2.engine.ProvisioningContext;
 import org.eclipse.equinox.p2.metadata.IInstallableUnit;
 import org.eclipse.equinox.p2.operations.InstallOperation;
 import org.eclipse.equinox.p2.operations.ProvisioningJob;
@@ -132,14 +133,17 @@ public class InstallNewSoftwareService implements IInstallNewSoftwareService {
 
 		try {
 
+			
 			final ProvisioningSession session = new ProvisioningSession(agent);
 			InstallOperation installOperation = new InstallOperation(session,
 					listIInstallableUnits);
+			
+			installOperation.setProvisioningContext(new ProvisioningContext(agent));
 
-			installOperation.getProvisioningContext().setArtifactRepositories(
+			/*installOperation.getProvisioningContext().setArtifactRepositories(
 					new URI[] { uri });
 			installOperation.getProvisioningContext().setMetadataRepositories(
-					new URI[] { uri });
+					new URI[] { uri });*/
 
 			IStatus resolveModal = installOperation
 					.resolveModal(nullProgressMonitor);
