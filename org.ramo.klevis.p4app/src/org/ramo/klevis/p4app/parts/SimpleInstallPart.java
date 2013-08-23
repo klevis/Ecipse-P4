@@ -139,6 +139,11 @@ public class SimpleInstallPart {
 								+ "Something bat happended");
 
 				}
+				
+				if(installNewSoftware!=null)
+				styledText.setText(installNewSoftware);
+				else
+					styledText.setText("Software installed!Pres Esc and restart");
 
 			}
 		});
