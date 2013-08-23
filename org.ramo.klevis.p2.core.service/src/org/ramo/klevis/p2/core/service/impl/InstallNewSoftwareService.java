@@ -29,6 +29,8 @@ import org.eclipse.equinox.p2.repository.metadata.IMetadataRepository;
 import org.ramo.klevis.p2.core.iservice.IInstallNewSoftwareService;
 
 public class InstallNewSoftwareService implements IInstallNewSoftwareService {
+	
+
 	NullProgressMonitor nullProgressMonitor;
 
 	URI uri;
@@ -273,7 +275,7 @@ public class InstallNewSoftwareService implements IInstallNewSoftwareService {
 			throw new RuntimeException(e);
 		}
 
-		return "Wait a minute and see to plugins folder if jar was added than restart application";
+		return SUCESS_INSTALL;
 	}
 
 	private List<IInstallableUnit> getUpdatedGroups() {

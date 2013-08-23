@@ -6,8 +6,10 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.equinox.p2.core.IProvisioningAgent;
 import org.eclipse.equinox.p2.metadata.IInstallableUnit;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
@@ -16,6 +18,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.custom.StyledText;
@@ -29,11 +32,13 @@ public class SimpleInstallPart {
 	IProvisioningAgent agent;
 	private Tree tree;
 	List<IInstallableUnit> loadRepository;
+	IWorkbench workbench;
 
 	public SimpleInstallPart(IInstallNewSoftwareService installService,
-			IProvisioningAgent agent) {
+			IProvisioningAgent agent, IWorkbench workbench) {
 		this.installService = installService;
 		this.agent = agent;
+		this.workbench = workbench;
 	}
 
 	public SimpleInstallPart() {
@@ -43,7 +48,7 @@ public class SimpleInstallPart {
 	 * Create contents of the view part.
 	 */
 	@PostConstruct
-	public void createControls(Composite parent) {
+	public void createControls(final Composite parent) {
 		parent.setLayout(new GridLayout(4, false));
 		new Label(parent, SWT.NONE);
 		new Label(parent, SWT.NONE);
@@ -67,14 +72,12 @@ public class SimpleInstallPart {
 			public void widgetSelected(SelectionEvent e) {
 
 				String text2 = text.getText();
-				
-				loadRepository = installService.loadRepository(text2,
-						agent);
+
+				loadRepository = installService.loadRepository(text2, agent);
 
 				tree.removeAll();
 				for (IInstallableUnit install : loadRepository) {
 
-					
 					TreeItem treeItem = new TreeItem(tree, 0);
 					treeItem.setText(install.getId());
 
@@ -143,11 +146,23 @@ public class SimpleInstallPart {
 								+ "Something bat happended");
 
 				}
-				
-				if(installNewSoftware!=null)
-				styledText.setText(installNewSoftware);
-				else
-					styledText.setText("Software installed!Pres Esc and restart");
+
+				if (installNewSoftware != null) {
+					styledText.setText(installNewSoftware);
+
+					if (installNewSoftware
+							.equals(IInstallNewSoftwareService.SUCESS_INSTALL)) {
+						boolean openConfirm = MessageDialog.openConfirm(
+								(Shell) parent, "",
+								"Software installed, do you want to restart in order to see changes?");
+						if (openConfirm) {
+							workbench.restart();
+						}
+
+					}
+				} else
+					styledText
+							.setText("Software installed!Pres Esc and restart");
 
 			}
 		});
