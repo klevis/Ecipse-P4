@@ -1,5 +1,6 @@
 package org.ramo.klevis.p2.core.service.impl;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import org.eclipse.equinox.p2.operations.ProvisioningSession;
 import org.eclipse.equinox.p2.query.IQuery;
 import org.eclipse.equinox.p2.query.IQueryResult;
 import org.eclipse.equinox.p2.query.QueryUtil;
+import org.eclipse.equinox.p2.repository.IRepositoryManager;
 import org.eclipse.equinox.p2.repository.metadata.IMetadataRepository;
 import org.ramo.klevis.p2.core.iservice.IInstallNewSoftwareService;
 
@@ -37,21 +39,32 @@ public class InstallNewSoftwareService implements IInstallNewSoftwareService {
 	public synchronized List<IInstallableUnit> loadRepository(String uriString,
 			IProvisioningAgent agent) {
 
+		uri = null;
 		nullProgressMonitor = new NullProgressMonitor();
 		this.agent = agent;
-		try {
-			uri = new URI(uriString);
-		} catch (URISyntaxException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		if (!uriString.contains("Http")
+				&& !(uriString.contains(".jar") || uriString.contains(".zip"))) {
+
+			uri=new File(uriString).toURI();
+		} else if (!uriString.contains("Http")
+				&& (uriString.contains(".jar") || uriString.contains(".zip"))) {
+			uri=new File(uriString).toURI();
 		}
+
+		if (uri == null)
+			try {
+				uri = new URI(uriString);
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
 		MetadataRepositoryManager metadataRepositoryManager = new MetadataRepositoryManager(
 				agent);
 
 		try {
-			loadRepository = metadataRepositoryManager.loadRepository(uri, 0,
-					nullProgressMonitor);
+			loadRepository = metadataRepositoryManager.loadRepository(uri,
+					IRepositoryManager.REPOSITORIES_ALL, nullProgressMonitor);
 		} catch (ProvisionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,14 +112,14 @@ public class InstallNewSoftwareService implements IInstallNewSoftwareService {
 	}
 
 	@Override
-	public synchronized String validate(List<IInstallableUnit> listIInstallableUnits) {
+	public synchronized String validate(
+			List<IInstallableUnit> listIInstallableUnits) {
 		if (uri == null || agent == null || nullProgressMonitor == null) {
 
 			throw new IllegalArgumentException(
 					"Must first call method laod repository");
 		}
-		
-		
+
 		try {
 
 			final ProvisioningSession session = new ProvisioningSession(agent);

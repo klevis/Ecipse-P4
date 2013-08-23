@@ -66,7 +66,9 @@ public class SimpleInstallPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-				loadRepository = installService.loadRepository(text.getText(),
+				String text2 = text.getText();
+				
+				loadRepository = installService.loadRepository(text2,
 						agent);
 
 				for (IInstallableUnit install : loadRepository) {
