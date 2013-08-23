@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.ramo.klevis.p4app.featureexample_1.0.0.201308231035.jar" id="org.ramo.klevis.p4app.featureexample" version="1.0.0.201308231035">
+      <category name="P4Example"/>
+   </feature>
+   <category-def name="P4Example" label="P4Example"/>
+</site>

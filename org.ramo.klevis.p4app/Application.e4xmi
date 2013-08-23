@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_NkDmoAvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ide.application" bindingContexts="_NkDmqQvGEeOtvZLNMl8kYw">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_NkDmoQvGEeOtvZLNMl8kYw" label="org.ramo.klevis.p4app" width="500" height="400">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_NkDmwAvGEeOtvZLNMl8kYw">
+      <children xsi:type="advanced:Perspective" xmi:id="_NkDmwQvGEeOtvZLNMl8kYw">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_NkDmwgvGEeOtvZLNMl8kYw">
+          <children xsi:type="basic:PartStack" xmi:id="_NkDmwwvGEeOtvZLNMl8kYw">
+            <children xsi:type="basic:Part" xmi:id="_NkDmxAvGEeOtvZLNMl8kYw" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.parts.SamplePart" label="Sample Part"/>
+          </children>
+        </children>
+      </children>
+    </children>
+    <mainMenu xmi:id="_NkDmuQvGEeOtvZLNMl8kYw" elementId="menu:org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_NkDmugvGEeOtvZLNMl8kYw" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_NkDmuwvGEeOtvZLNMl8kYw" label="Open" iconURI="platform:/plugin/org.ramo.klevis.p4app/icons/sample.gif" command="_NkDmsAvGEeOtvZLNMl8kYw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_NkDmvAvGEeOtvZLNMl8kYw" label="Save" iconURI="platform:/plugin/org.ramo.klevis.p4app/icons/save_edit.gif" command="_NkDmswvGEeOtvZLNMl8kYw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_NkDmvQvGEeOtvZLNMl8kYw" label="Quit" command="_NkDmrAvGEeOtvZLNMl8kYw"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_NkDmvgvGEeOtvZLNMl8kYw" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_NkDmvwvGEeOtvZLNMl8kYw" label="About" command="_NkDmtgvGEeOtvZLNMl8kYw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_HRJ90AvJEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handledmenuitem.0" label="Install New Software" command="_DWYKUAvJEeOtvZLNMl8kYw"/>
+      </children>
+    </mainMenu>
+    <trimBars xmi:id="_NkDmxQvGEeOtvZLNMl8kYw">
+      <children xsi:type="menu:ToolBar" xmi:id="_NkDmxgvGEeOtvZLNMl8kYw" elementId="toolbar:org.eclipse.ui.main.toolbar">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_NkDmxwvGEeOtvZLNMl8kYw" iconURI="platform:/plugin/org.ramo.klevis.p4app/icons/sample.gif" command="_NkDmsAvGEeOtvZLNMl8kYw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_NkDmyAvGEeOtvZLNMl8kYw" iconURI="platform:/plugin/org.ramo.klevis.p4app/icons/save_edit.gif" command="_NkDmswvGEeOtvZLNMl8kYw"/>
+      </children>
+    </trimBars>
+  </children>
+  <handlers xmi:id="_NkDmrQvGEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.quitCommand" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.QuitHandler" command="_NkDmrAvGEeOtvZLNMl8kYw"/>
+  <handlers xmi:id="_NkDmsQvGEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.openCommand" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.OpenHandler" command="_NkDmsAvGEeOtvZLNMl8kYw"/>
+  <handlers xmi:id="_NkDmtAvGEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.saveCommand" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.SaveHandler" command="_NkDmswvGEeOtvZLNMl8kYw"/>
+  <handlers xmi:id="_NkDmtwvGEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.aboutCommand" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.AboutHandler" command="_NkDmtgvGEeOtvZLNMl8kYw"/>
+  <handlers xmi:id="_FI0YUAvJEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.0" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.InstallNewSoftwareHandler" command="_DWYKUAvJEeOtvZLNMl8kYw"/>
+  <bindingTables xmi:id="_NkDmrgvGEeOtvZLNMl8kYw" bindingContext="_NkDmqQvGEeOtvZLNMl8kYw">
+    <bindings xmi:id="_NkDmrwvGEeOtvZLNMl8kYw" keySequence="M1+Q" command="_NkDmrAvGEeOtvZLNMl8kYw"/>
+    <bindings xmi:id="_NkDmsgvGEeOtvZLNMl8kYw" keySequence="M1+O" command="_NkDmsAvGEeOtvZLNMl8kYw"/>
+    <bindings xmi:id="_NkDmtQvGEeOtvZLNMl8kYw" keySequence="M1+S" command="_NkDmswvGEeOtvZLNMl8kYw"/>
+    <bindings xmi:id="_NkDmuAvGEeOtvZLNMl8kYw" keySequence="M1+A" command="_NkDmtgvGEeOtvZLNMl8kYw"/>
+  </bindingTables>
+  <rootContext xmi:id="_NkDmqQvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
+    <children xmi:id="_NkDmqgvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
+    <children xmi:id="_NkDmqwvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  </rootContext>
+  <commands xmi:id="_NkDmrAvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
+  <commands xmi:id="_NkDmsAvGEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.open" commandName="openCommand"/>
+  <commands xmi:id="_NkDmswvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
+  <commands xmi:id="_NkDmtgvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_DWYKUAvJEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.command.0" commandName="InstallNewSoftware"/>
+  <addons xmi:id="_NkDmogvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_NkDmowvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_NkDmpAvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_NkDmpQvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_NkDmpgvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_NkDmpwvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_NkDmqAvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+</application:Application>
