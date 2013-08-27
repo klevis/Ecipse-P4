@@ -32,7 +32,7 @@ public class UninstallSoftwareService implements IUninstallSoftwareService {
 
 		NullProgressMonitor monitor = new NullProgressMonitor();
 		IQueryResult<IInstallableUnit> query = queryable.query(
-				QueryUtil.createIUAnyQuery(), monitor);
+				QueryUtil.createIUGroupQuery(), monitor);
 
 		List<IInstallableUnit> list = org.ramo.klevis.p2.core.util.Utils
 				.toList(query);
