@@ -48,6 +48,7 @@ public class SimpleUninstallPart {
 		this.uninstallSoftwareService = uninstallSoftwareService;
 		installedSoftware = uninstallSoftwareService.listInstalledSoftware(
 				agen, selectedRepresent);
+
 	}
 
 	/**
@@ -56,7 +57,13 @@ public class SimpleUninstallPart {
 	@PostConstruct
 	public void createControls(final Composite parent) {
 		parent.setLayout(new GridLayout(2, false));
+		if (installedSoftware == null) {
+			MessageDialog.openWarning((Shell) parent, "",
+					"Export .product file first!");
 
+			return;
+
+		}
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridData gd_composite = new GridData(SWT.LEFT, SWT.CENTER, false,
 				false, 2, 1);
@@ -104,7 +111,7 @@ public class SimpleUninstallPart {
 		btnRadioButton_2.setText("Any");
 
 		btnRadioButton.setSelection(true);
-		
+
 		Label lblListOfInstalled = new Label(parent, SWT.NONE);
 		lblListOfInstalled.setFont(SWTResourceManager.getFont("Segoe UI", 12,
 				SWT.BOLD));
