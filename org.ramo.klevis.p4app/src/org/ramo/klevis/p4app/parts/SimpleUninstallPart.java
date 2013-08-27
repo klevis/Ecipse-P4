@@ -27,6 +27,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.ramo.klevis.p2.core.iservice.IUninstallSoftwareService;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.widgets.Combo;
 
 public class SimpleUninstallPart {
 	IUninstallSoftwareService uninstallSoftwareService;
@@ -35,15 +36,18 @@ public class SimpleUninstallPart {
 	List<IInstallableUnit> installedSoftware;
 
 	private Tree tree;
+	int selectedRepresent = 0;
+	IProvisioningAgent agent;
 
 	public SimpleUninstallPart(
 			IUninstallSoftwareService uninstallSoftwareService,
 			IProvisioningAgent agen, IWorkbench workbench) {
 
+		this.agent = agen;
 		this.workbench = workbench;
 		this.uninstallSoftwareService = uninstallSoftwareService;
-		installedSoftware = uninstallSoftwareService
-				.listInstalledSoftware(agen);
+		installedSoftware = uninstallSoftwareService.listInstalledSoftware(
+				agen, selectedRepresent);
 	}
 
 	/**
@@ -51,21 +55,68 @@ public class SimpleUninstallPart {
 	 */
 	@PostConstruct
 	public void createControls(final Composite parent) {
-		parent.setLayout(new GridLayout(1, false));
+		parent.setLayout(new GridLayout(2, false));
 
+		Composite composite = new Composite(parent, SWT.NONE);
+		GridData gd_composite = new GridData(SWT.LEFT, SWT.CENTER, false,
+				false, 2, 1);
+		gd_composite.widthHint = 683;
+		composite.setLayoutData(gd_composite);
+
+		Button btnRadioButton = new Button(composite, SWT.RADIO);
+		btnRadioButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				installedSoftware = uninstallSoftwareService
+						.listInstalledSoftware(agent,
+								IUninstallSoftwareService.GROUP);
+				addToTree();
+			}
+		});
+		btnRadioButton.setBounds(10, 10, 90, 16);
+		btnRadioButton.setText("Group");
+
+		Button btnRadioButton_1 = new Button(composite, SWT.RADIO);
+		btnRadioButton_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				installedSoftware = uninstallSoftwareService
+						.listInstalledSoftware(agent,
+								IUninstallSoftwareService.CATEGORY);
+				addToTree();
+			}
+		});
+		btnRadioButton_1.setBounds(107, 10, 90, 16);
+		btnRadioButton_1.setText("Category");
+
+		Button btnRadioButton_2 = new Button(composite, SWT.RADIO);
+		btnRadioButton_2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				installedSoftware = uninstallSoftwareService
+						.listInstalledSoftware(agent,
+								IUninstallSoftwareService.ANY);
+				addToTree();
+			}
+		});
+		btnRadioButton_2.setBounds(203, 10, 90, 16);
+		btnRadioButton_2.setText("Any");
+
+		btnRadioButton.setSelection(true);
+		
 		Label lblListOfInstalled = new Label(parent, SWT.NONE);
 		lblListOfInstalled.setFont(SWTResourceManager.getFont("Segoe UI", 12,
 				SWT.BOLD));
 		lblListOfInstalled.setText("List of installed software");
+		new Label(parent, SWT.NONE);
 
 		tree = new Tree(parent, SWT.BORDER | SWT.MULTI);
-		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		GridData gd_tree = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
+		gd_tree.widthHint = 384;
+		tree.setLayoutData(gd_tree);
 
-		for (IInstallableUnit installed : installedSoftware) {
-
-			TreeItem treeItem = new TreeItem(tree, 0);
-			treeItem.setText(installed.getId());
-		}
+		addToTree();
 		Button btnUninstall = new Button(parent, SWT.NONE);
 		/*
 		 * btnUninstall.addMouseListener(new MouseAdapter() {
@@ -74,8 +125,8 @@ public class SimpleUninstallPart {
 		 * });
 		 */
 		GridData gd_btnUninstall = new GridData(SWT.LEFT, SWT.CENTER, false,
-				false, 1, 1);
-		gd_btnUninstall.widthHint = 557;
+				false, 2, 1);
+		gd_btnUninstall.widthHint = 554;
 		btnUninstall.setLayoutData(gd_btnUninstall);
 		btnUninstall.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -87,6 +138,15 @@ public class SimpleUninstallPart {
 		btnUninstall.setFont(SWTResourceManager.getFont("Segoe UI", 11,
 				SWT.BOLD | SWT.ITALIC));
 		btnUninstall.setText("Uninstall");
+	}
+
+	private void addToTree() {
+		tree.removeAll();
+		for (IInstallableUnit installed : installedSoftware) {
+
+			TreeItem treeItem = new TreeItem(tree, 0);
+			treeItem.setText(installed.getId());
+		}
 	}
 
 	@PreDestroy
@@ -138,8 +198,9 @@ public class SimpleUninstallPart {
 
 					workbench.restart();
 				}
-			}else{
-				MessageDialog.openWarning((Shell) parent, "Info", uninstallSelected);
+			} else {
+				MessageDialog.openWarning((Shell) parent, "Info",
+						uninstallSelected);
 			}
 		}
 	}

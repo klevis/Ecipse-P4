@@ -13,6 +13,7 @@ import org.eclipse.equinox.p2.metadata.IInstallableUnit;
 import org.eclipse.equinox.p2.operations.ProvisioningJob;
 import org.eclipse.equinox.p2.operations.ProvisioningSession;
 import org.eclipse.equinox.p2.operations.UninstallOperation;
+import org.eclipse.equinox.p2.query.IQuery;
 import org.eclipse.equinox.p2.query.IQueryResult;
 import org.eclipse.equinox.p2.query.IQueryable;
 import org.eclipse.equinox.p2.query.QueryUtil;
@@ -20,9 +21,13 @@ import org.ramo.klevis.p2.core.iservice.IUninstallSoftwareService;
 
 public class UninstallSoftwareService implements IUninstallSoftwareService {
 	IProvisioningAgent agent;
+	public static final int GROUP = 0;
+	public static final int CATEGORY = 1;
+	public static final int ANY = 2;
 
 	@Override
-	public List<IInstallableUnit> listInstalledSoftware(IProvisioningAgent agen) {
+	public List<IInstallableUnit> listInstalledSoftware(
+			IProvisioningAgent agen, int i) {
 
 		this.agent = agen;
 		IProfileRegistry service = (IProfileRegistry) agen
@@ -31,8 +36,17 @@ public class UninstallSoftwareService implements IUninstallSoftwareService {
 		IQueryable<IInstallableUnit> queryable = service.getProfile("_SELF_");
 
 		NullProgressMonitor monitor = new NullProgressMonitor();
-		IQueryResult<IInstallableUnit> query = queryable.query(
-				QueryUtil.createIUGroupQuery(), monitor);
+		IQuery<IInstallableUnit> createIU = null;
+		if (i == GROUP) {
+			createIU = QueryUtil.createIUGroupQuery();
+		} else if (i == CATEGORY) {
+			createIU = QueryUtil.createIUCategoryQuery();
+		} else if (i == ANY) {
+
+			createIU = QueryUtil.createIUAnyQuery();
+		}
+		IQueryResult<IInstallableUnit> query = queryable.query(createIU,
+				monitor);
 
 		List<IInstallableUnit> list = org.ramo.klevis.p2.core.util.Utils
 				.toList(query);
