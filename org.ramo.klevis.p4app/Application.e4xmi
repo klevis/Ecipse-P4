@@ -19,6 +19,7 @@
       <children xsi:type="menu:Menu" xmi:id="_NkDmvgvGEeOtvZLNMl8kYw" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_NkDmvwvGEeOtvZLNMl8kYw" label="About" command="_NkDmtgvGEeOtvZLNMl8kYw"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_HRJ90AvJEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handledmenuitem.0" label="Install New Software" command="_DWYKUAvJEeOtvZLNMl8kYw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_OeSIcA8iEeOleMZOsdAfyA" elementId="org.ramo.klevis.p4app.handledmenuitem.1" label="Uninstall Software" command="_k1D9MA8iEeOleMZOsdAfyA"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_NkDmxQvGEeOtvZLNMl8kYw">
@@ -33,6 +34,7 @@
   <handlers xmi:id="_NkDmtAvGEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.saveCommand" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.SaveHandler" command="_NkDmswvGEeOtvZLNMl8kYw"/>
   <handlers xmi:id="_NkDmtwvGEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.aboutCommand" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.AboutHandler" command="_NkDmtgvGEeOtvZLNMl8kYw"/>
   <handlers xmi:id="_FI0YUAvJEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.handler.0" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.InstallNewSoftwareHandler" command="_DWYKUAvJEeOtvZLNMl8kYw"/>
+  <handlers xmi:id="_w8qBIA8iEeOleMZOsdAfyA" elementId="org.ramo.klevis.p4app.handler.1" contributionURI="bundleclass://org.ramo.klevis.p4app/org.ramo.klevis.p4app.handlers.UninstallSoftwareHandler" command="_k1D9MA8iEeOleMZOsdAfyA"/>
   <bindingTables xmi:id="_NkDmrgvGEeOtvZLNMl8kYw" bindingContext="_NkDmqQvGEeOtvZLNMl8kYw">
     <bindings xmi:id="_NkDmrwvGEeOtvZLNMl8kYw" keySequence="M1+Q" command="_NkDmrAvGEeOtvZLNMl8kYw"/>
     <bindings xmi:id="_NkDmsgvGEeOtvZLNMl8kYw" keySequence="M1+O" command="_NkDmsAvGEeOtvZLNMl8kYw"/>
@@ -48,6 +50,7 @@
   <commands xmi:id="_NkDmswvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_NkDmtgvGEeOtvZLNMl8kYw" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
   <commands xmi:id="_DWYKUAvJEeOtvZLNMl8kYw" elementId="org.ramo.klevis.p4app.command.0" commandName="InstallNewSoftware"/>
+  <commands xmi:id="_k1D9MA8iEeOleMZOsdAfyA" elementId="org.ramo.klevis.p4app.command.1" commandName="UninstallSoftware"/>
   <addons xmi:id="_NkDmogvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_NkDmowvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_NkDmpAvGEeOtvZLNMl8kYw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
